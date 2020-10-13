@@ -7,20 +7,39 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.gameailatrieuphu.data.CauHoi;
+import com.example.gameailatrieuphu.data.DataCauHoi;
+import com.example.gameailatrieuphu.themcsdl.themcsdl;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private Button btnBatDau;
+    private Button btnBatDau,btnHuongDan;
     private Intent mIntent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         btnBatDau=findViewById(R.id.btnBatDau);
         btnBatDau.setOnClickListener(this);
+
+        btnHuongDan=findViewById(R.id.btnHuongDan);
+        btnHuongDan.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        mIntent=new Intent(this,MainActivity2.class);
-        startActivity(mIntent);
+        switch (view.getId())
+        {
+            case R.id.btnBatDau:
+                mIntent=new Intent(this,MainActivity2.class);
+                startActivity(mIntent);
+                break;
+            case R.id.btnHuongDan:
+                mIntent=new Intent(this, themcsdl.class);
+                startActivity(mIntent);
+                break;
+        }
+
+
     }
 }

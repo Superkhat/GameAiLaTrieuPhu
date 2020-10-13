@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TienThuongAdapter extends ArrayAdapter<String> {
+   // int a=15;
+     int vtCauHoi;
     private Context mContext;
     private List<String> mStringArrayList;
     public TienThuongAdapter(@NonNull Context context, int resource, @NonNull List<String> objects) {
@@ -26,7 +28,11 @@ public class TienThuongAdapter extends ArrayAdapter<String> {
         this.mContext=context;
         this.mStringArrayList=objects;
     }
-
+    public void viTriCauHoi(int vtCauHoi)
+    {
+        this.vtCauHoi=vtCauHoi;
+        notifyDataSetChanged();
+    }
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -35,13 +41,15 @@ public class TienThuongAdapter extends ArrayAdapter<String> {
        TextView txtTienTHuong =convertView.findViewById(R.id.txtTienThuong);
         if((position+1)%5==0)
         {
-            txtTienTHuong.setTextColor(Color.parseColor("#FFFFFFF"));
+            txtTienTHuong.setTextColor(Color.parseColor("#FFFFFFFF"));
         }
         else
             txtTienTHuong.setTextColor(Color.parseColor("#FFFFC107"));
-        int vt=position+1;
+        int vt=15-position;
         String HienThi= vt+"    "+"$"+mStringArrayList.get(position);
         txtTienTHuong.setText(HienThi);
+        if(vt==vtCauHoi)
+            txtTienTHuong.setBackgroundColor(Color.parseColor("#FF2196F3"));
         return convertView;
     }
 }
