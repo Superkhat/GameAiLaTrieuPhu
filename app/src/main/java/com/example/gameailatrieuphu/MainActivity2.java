@@ -27,12 +27,13 @@ public class MainActivity2 extends AppCompatActivity  {
     private ListView mListViewtt;
     private TextView txtCauHoiHT;
     private  TienThuongAdapter mAdapter;
-    private List<String> mStringList;
+    private List<String> mStringList;// danh sach tien thuong
     private TextView txtCauHoi,txtThuaGame;
     private Button btnCauTraLoi1,btnCauTraLoi2,btnCauTraLoi3,btnCauTraLoi4;
     private CauHoi mCauHoi;
     private int vtCauHoi=1;
     private List<Button> ListbtnCauTraLoi;
+    private boolean OneClick= false;
     String cauTraLoi;
     FaceData faceData;
     View.OnClickListener listener;
@@ -55,35 +56,45 @@ public class MainActivity2 extends AppCompatActivity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout2);
         txtCauHoiHT=findViewById(R.id.cauHoiHT);
+        //Toast.makeText(this, "Chay Create", Toast.LENGTH_SHORT).show();
         khoiTao();
         mListViewtt.setAdapter(mAdapter);
-       setCauHoi();
+        setCauHoi();
         OnClick();
     }
     public void khoiTao()
     {
-        mCauHoi=new CauHoi();
-        ListbtnCauTraLoi=new ArrayList<>();
-        mStringList=new ArrayList<>();
-        mListViewtt=findViewById(R.id.lsvTienThuong);
+        try
+        {
+            mCauHoi=new CauHoi();
+            ListbtnCauTraLoi=new ArrayList<>();
+            mStringList=new ArrayList<>();// danh sach tien thuong
+            mListViewtt=findViewById(R.id.lsvTienThuong);
 
-        themDataLsv();
-        mAdapter=new TienThuongAdapter (this,R.layout.layout2,mStringList);
-       txtCauHoi=findViewById(R.id.txtCauHoi);
-       btnCauTraLoi1=findViewById(R.id.btnCauTraLoi1);
-       btnCauTraLoi2=findViewById(R.id.btnCauTraLoi2);
-       btnCauTraLoi3=findViewById(R.id.btnCauTraLoi3);
-       btnCauTraLoi4=findViewById(R.id.btnCauTraLoi4);
-       ListbtnCauTraLoi.add(btnCauTraLoi1);
-        ListbtnCauTraLoi.add(btnCauTraLoi2);
-        ListbtnCauTraLoi.add(btnCauTraLoi3);
-        ListbtnCauTraLoi.add(btnCauTraLoi4);
-        txtThuaGame=findViewById(R.id.txtThuaGame);
-        txtThuaGame.setVisibility(View.GONE);
-        faceData=new FaceData();
+            themDataLsv();//Them du lieu ss vao list String
+            mAdapter=new TienThuongAdapter (this,R.layout.layout2,mStringList);
+            txtCauHoi=findViewById(R.id.txtCauHoi);
+            btnCauTraLoi1=findViewById(R.id.btnCauTraLoi1);
+            btnCauTraLoi2=findViewById(R.id.btnCauTraLoi2);
+            btnCauTraLoi3=findViewById(R.id.btnCauTraLoi3);
+            btnCauTraLoi4=findViewById(R.id.btnCauTraLoi4);
+            ListbtnCauTraLoi.add(btnCauTraLoi1);
+            ListbtnCauTraLoi.add(btnCauTraLoi2);
+            ListbtnCauTraLoi.add(btnCauTraLoi3);
+            ListbtnCauTraLoi.add(btnCauTraLoi4);
+            txtThuaGame=findViewById(R.id.txtThuaGame);
+            txtThuaGame.setVisibility(View.GONE);
+            faceData=new FaceData();
+        }
+        catch (Exception ex)
+        {
+            Toast.makeText(this, "Loi"+ex.toString(),Toast.LENGTH_SHORT).show();
+        }
+
 
     }
 
@@ -91,7 +102,11 @@ public class MainActivity2 extends AppCompatActivity  {
      listener=new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-          kiemTraCauTraLoi((Button)view);
+                if(!OneClick)
+                {
+                    kiemTraCauTraLoi((Button)view);
+                }
+
             }
         };
        /* btnCauTraLoi1.setOnClickListener(listener);
@@ -100,10 +115,14 @@ public class MainActivity2 extends AppCompatActivity  {
         btnCauTraLoi4.setOnClickListener(listener);*/
         for(Button i:ListbtnCauTraLoi)
         {
-           i.setOnClickListener(listener);
+            if(!OneClick)
+            {
+            i.setOnClickListener(listener);
+            OneClick = true;            }
         }
 
     }
+
     public  void  kiemTraCauTraLoi(Button btncauTraLoi)
     {
         cauTraLoi= (String) btncauTraLoi.getText();
@@ -157,8 +176,15 @@ public class MainActivity2 extends AppCompatActivity  {
 
     public void themDataLsv()
     {
-        for(int i=ss.length-1;i>=0;--i)
-        mStringList.add(ss[i]);
+        try {
+            for(int i=ss.length-1;i>=0;--i)
+                mStringList.add(ss[i]);
+        }
+        catch(Exception ex)
+        {
+            Toast.makeText(this, "Loi"+ex.toString(), Toast.LENGTH_SHORT).toString();
+        }
+
     }
 
     public void setCauHoi()
@@ -238,8 +264,11 @@ public class MainActivity2 extends AppCompatActivity  {
     public void DoiCauHoi(View view)
     {
         if(doiCauHoi==false)
+        {
             return;
+        }
         setCauHoi();
+        OneClick=false;
         doiCauHoi=false;
     }
 }
