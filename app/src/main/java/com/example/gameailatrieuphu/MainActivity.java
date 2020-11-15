@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btnHuongDan=findViewById(R.id.btnHuongDan);
         btnHuongDan.setOnClickListener(this);
+
     }
 
     @Override

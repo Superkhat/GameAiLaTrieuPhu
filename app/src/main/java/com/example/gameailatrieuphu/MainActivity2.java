@@ -33,7 +33,6 @@ public class MainActivity2 extends AppCompatActivity  {
     private CauHoi mCauHoi;
     private int vtCauHoi=1;
     private List<Button> ListbtnCauTraLoi;
-    private boolean OneClick= false;
     String cauTraLoi;
     FaceData faceData;
     View.OnClickListener listener;
@@ -99,32 +98,36 @@ public class MainActivity2 extends AppCompatActivity  {
     }
 
     public void OnClick() {
-     listener=new View.OnClickListener() {
+        listener=new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!OneClick)
-                {
-                    kiemTraCauTraLoi((Button)view);
-                }
-
+                kiemTraCauTraLoi((Button)view);
             }
         };
-       /* btnCauTraLoi1.setOnClickListener(listener);
+        btnCauTraLoi1.setOnClickListener(listener);
         btnCauTraLoi2.setOnClickListener(listener);
         btnCauTraLoi3.setOnClickListener(listener);
-        btnCauTraLoi4.setOnClickListener(listener);*/
+        btnCauTraLoi4.setOnClickListener(listener);
         for(Button i:ListbtnCauTraLoi)
         {
-            if(!OneClick)
-            {
-            i.setOnClickListener(listener);
-            OneClick = true;            }
+
+                i.setOnClickListener(listener);
+                //kiemTraCauTraLoi(listener);
+
         }
 
     }
 
+    /*public void OnClick() {
+        btnCauTraLoi1.setOnClickListener(this);
+        btnCauTraLoi2.setOnClickListener(this);
+        btnCauTraLoi3.setOnClickListener(this);
+        btnCauTraLoi4.setOnClickListener(this);
+    }*/
+
     public  void  kiemTraCauTraLoi(Button btncauTraLoi)
     {
+        setButtonClickableFalse();
         cauTraLoi= (String) btncauTraLoi.getText();
         btncauTraLoi.setBackgroundResource(R.drawable.mauchonbutton);
         new CountDownTimer(2000,100)
@@ -189,6 +192,7 @@ public class MainActivity2 extends AppCompatActivity  {
 
     public void setCauHoi()
     {
+        setButtonClickableTrue();
         txtCauHoiHT.setText("Bạn đang ở câu số "+vtCauHoi);
         mCauHoi=faceData.taoCauHoi(vtCauHoi,this);
         List<String> mCauTraLoi=new ArrayList<>(mCauHoi.getmDapAnS());
@@ -268,7 +272,47 @@ public class MainActivity2 extends AppCompatActivity  {
             return;
         }
         setCauHoi();
-        OneClick=false;
+
         doiCauHoi=false;
+    }
+
+    /*@Override
+    public void onClick(View view) {
+        switch (view.getId())
+        {
+            case R.id.btnCauTraLoi1:
+                kiemTraCauTraLoi(btnCauTraLoi1);
+                setButtonClickableFalse();
+                break;
+            case R.id.btnCauTraLoi2:
+                kiemTraCauTraLoi(btnCauTraLoi1);
+                setButtonClickableFalse();
+                break;
+            case R.id.btnCauTraLoi3:
+                kiemTraCauTraLoi(btnCauTraLoi1);
+                setButtonClickableFalse();
+                break;
+            case R.id.btnCauTraLoi4:
+                kiemTraCauTraLoi(btnCauTraLoi1);
+                setButtonClickableFalse();
+                break;
+        }
+    }*/
+    public void setButtonClickableTrue( ) {
+
+                btnCauTraLoi1.setClickable(false);
+                btnCauTraLoi2.setClickable(false);
+                btnCauTraLoi3.setClickable(false);
+                btnCauTraLoi4.setClickable(false);
+
+    }
+
+    public void setButtonClickableFalse()
+    {
+                btnCauTraLoi1.setClickable(true);
+                btnCauTraLoi2.setClickable(true);
+                btnCauTraLoi3.setClickable(true);
+                btnCauTraLoi4.setClickable(true);
+
     }
 }
