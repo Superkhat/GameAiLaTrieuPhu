@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ import java.util.List;
 import java.util.Random;
 
 public class MainActivity2 extends AppCompatActivity  {
+    private ImageView btnTro5050,btnTroKhanGia,btnDoiCauHoi;
     private ListView mListViewtt;
     private TextView txtCauHoiHT;
     private  TienThuongAdapter mAdapter;
@@ -64,11 +66,15 @@ public class MainActivity2 extends AppCompatActivity  {
         mListViewtt.setAdapter(mAdapter);
         setCauHoi();
         OnClick();
+
     }
     public void khoiTao()
     {
         try
         {
+            btnTro5050=findViewById(R.id.btnTro5050);
+            btnDoiCauHoi=findViewById(R.id.btnDoiCauHoi);
+            btnTroKhanGia=findViewById(R.id.btnTroKhanGia);
             mCauHoi=new CauHoi();
             ListbtnCauTraLoi=new ArrayList<>();
             mStringList=new ArrayList<>();// danh sach tien thuong
@@ -166,7 +172,16 @@ public class MainActivity2 extends AppCompatActivity  {
                         else
                         {
                             txtThuaGame.setVisibility(View.VISIBLE);
-                            txtThuaGame.setText("Bạn ra về với số tiền thưởng là "+ss[vtCauHoi-1]+"$");
+                            if(vtCauHoi == 1)
+                            {
+                                txtThuaGame.setText("Bạn ra về với số tiền thưởng là 0$");
+                            }
+                            else
+                            {
+                                txtThuaGame.setText("Bạn ra về với số tiền thưởng là "+ss[vtCauHoi-2]+"$");
+                            }
+
+
 
                         }
 
@@ -193,7 +208,7 @@ public class MainActivity2 extends AppCompatActivity  {
     public void setCauHoi()
     {
         setButtonClickableTrue();
-        txtCauHoiHT.setText("Bạn đang ở câu số "+vtCauHoi);
+        txtCauHoiHT.setText("   Câu số "+vtCauHoi);
         mCauHoi=faceData.taoCauHoi(vtCauHoi,this);
         List<String> mCauTraLoi=new ArrayList<>(mCauHoi.getmDapAnS());
         mCauTraLoi.add(mCauHoi.getDapAnD());
@@ -229,6 +244,7 @@ public class MainActivity2 extends AppCompatActivity  {
         }
         else
         {
+            btnTro5050.setAlpha(0.5f);
             Random r=new Random();
             int sdaa=2;
             while(sdaa>0){
@@ -251,6 +267,7 @@ public class MainActivity2 extends AppCompatActivity  {
     {
         if(troGiupKhanGia==false)
             return;
+        btnTroKhanGia.setAlpha(0.5f);
        for(int i=0;i<ListbtnCauTraLoi.size();++i)
        {
            TextView txt=ListbtnCauTraLoi.get(i);
@@ -267,6 +284,7 @@ public class MainActivity2 extends AppCompatActivity  {
     boolean doiCauHoi=true;
     public void DoiCauHoi(View view)
     {
+        btnDoiCauHoi.setAlpha(0.5f);
         if(doiCauHoi==false)
         {
             return;
@@ -300,19 +318,19 @@ public class MainActivity2 extends AppCompatActivity  {
     }*/
     public void setButtonClickableTrue( ) {
 
-                btnCauTraLoi1.setClickable(false);
-                btnCauTraLoi2.setClickable(false);
-                btnCauTraLoi3.setClickable(false);
-                btnCauTraLoi4.setClickable(false);
+                btnCauTraLoi1.setClickable(true);
+                btnCauTraLoi2.setClickable(true);
+                btnCauTraLoi3.setClickable(true);
+                btnCauTraLoi4.setClickable(true);
 
     }
 
     public void setButtonClickableFalse()
     {
-                btnCauTraLoi1.setClickable(true);
-                btnCauTraLoi2.setClickable(true);
-                btnCauTraLoi3.setClickable(true);
-                btnCauTraLoi4.setClickable(true);
+                btnCauTraLoi1.setClickable(false);
+                btnCauTraLoi2.setClickable(false);
+                btnCauTraLoi3.setClickable(false);
+                btnCauTraLoi4.setClickable(false);
 
     }
 }

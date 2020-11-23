@@ -22,7 +22,7 @@ public class FaceData {
         mDataCauHoi=new DataCauHoi(mContext);
         List<CauHoi> ListDataCauHoi=new ArrayList<>(mDataCauHoi.getall());
         Random random=new Random();
-        int cau=random.nextInt(2);
+        int cau=random.nextInt(28);
         Toast.makeText(mContext,ListDataCauHoi.size()+"",Toast.LENGTH_LONG).show();
         mCauHoi.setNoiDung(ListDataCauHoi.get(cau).getNoiDung());
         mCauHoi.setDapAnD(ListDataCauHoi.get(cau).getDapAnD());

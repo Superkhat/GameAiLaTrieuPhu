@@ -24,6 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
+            android:id="@+id/btnTro5050"
             android:onClick="troGiup5050"
             android:layout_marginLeft="5dp"
             android:layout_width="40dp"
@@ -31,6 +32,7 @@
             android:background="@drawable/trogiupmotnua"></ImageView>
 
         <ImageView
+            android:id="@+id/btnTroKhanGia"
             android:onClick="troGiupKhanGia"
             android:layout_marginLeft="6dp"
             android:layout_width="40dp"
@@ -38,12 +40,14 @@
             android:background="@drawable/trogiupkgia"
             ></ImageView>
         <ImageView
+
             android:layout_marginLeft="6dp"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="@drawable/backgrond"
             ></ImageView>
         <ImageView
+            android:id="@+id/btnDoiCauHoi"
             android:onClick="DoiCauHoi"
             android:layout_marginLeft="6dp"
             android:layout_width="40dp"
