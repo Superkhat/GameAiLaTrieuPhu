@@ -13,7 +13,7 @@ import com.example.gameailatrieuphu.data.DataCauHoi;
 import com.example.gameailatrieuphu.themcsdl.themcsdl;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private Button btnBatDau,btnHuongDan;
+    private Button btnBatDau,btnHuongDan, btnHighScore;
     private Intent mIntent;
 
     @Override
@@ -22,6 +22,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         btnBatDau=findViewById(R.id.btnBatDau);
         btnBatDau.setOnClickListener(this);
+
+        //btnHighScore.findViewById(R.id.m_HighScore); // LOI KO BAT DC
+        //btnHighScore.setOnClickListener(this);
 
         btnHuongDan=findViewById(R.id.btnHuongDan);
         btnHuongDan.setOnClickListener(this);
@@ -41,6 +44,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mIntent=new Intent(this, themcsdl.class);
                 startActivity(mIntent);
                 break;
+            //case R.id.btnHighScore:
+                //HighScore m_HS = new HighScore(this);
+                //m_HS.show();
+               // break;
         }
 
 

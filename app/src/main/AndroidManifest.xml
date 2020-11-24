@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".DiemCao"></activity>
+
         <activity android:name=".themcsdl.themcsdl" />
         <activity android:name=".MainActivity">
             <intent-filter>

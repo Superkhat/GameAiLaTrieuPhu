@@ -6,8 +6,16 @@
     android:layout_height="match_parent"
     android:background="@drawable/custorm_anh"
     android:orientation="vertical"
-    tools:context=".DiemCao">
+    >
 
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:alpha="0.5"
+        app:srcCompat="@drawable/backgrond" />
     <TextView
         android:layout_marginTop="34dp"
         android:layout_gravity="center"
@@ -20,11 +28,15 @@
         android:textColor="#FFC107"
         />
 
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:id="@+id/m_HighScore"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:alpha="0.5"
-        app:srcCompat="@drawable/backgrond" />
-
+        android:text="10"
+        android:textSize="59dp"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="#FFC107"
+        />
 </LinearLayout>
