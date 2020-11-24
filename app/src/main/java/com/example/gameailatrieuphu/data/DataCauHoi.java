@@ -40,7 +40,43 @@ public class DataCauHoi extends SQLiteOpenHelper {
                 ")";
 
         sqLiteDatabase.execSQL(cautruyvan);
-        Toast.makeText(mContext, "create successfylly", Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, "create successfylly Before Add Question", Toast.LENGTH_SHORT).show();
+
+      //Add QUestion test
+        try
+        {
+            String[] Nd = new String[90];
+            String[] d1 = new String[90];
+            String[] d2 = new String[90];
+            String[] d3 = new String[90];
+            String[] d4 = new String[90];
+
+            for (int i = 0; i < 40; i++) {
+                Nd[i] = " Cau Hoi " +i +"?";
+                d1[i] = " Answer 1";
+                d2[i] = " Answer 2";
+                d3[i] = " Answer 3";
+                d4[i] = " Answer 4";
+            }
+            ContentValues mValues = new ContentValues();
+            for (int i = 0; i < 40; i++) {
+
+                mValues.put("noidung", Nd[i]);
+                mValues.put("dapan1", d1[i]);
+                mValues.put("dapan2", d2[i]);
+                mValues.put("dapan3", d3[i]);
+                mValues.put("dapandung", d4[i]);
+                sqLiteDatabase.insert(nameTable, null, mValues);
+            }
+
+            Toast.makeText(mContext, "Thêm thành công In Add New Quest", Toast.LENGTH_LONG).show();
+        }
+        catch (Exception ex)
+        {
+            Toast.makeText(mContext, "Thêm That Bai Hoan Toan in New ADD quesstion" + ex.toString(), Toast.LENGTH_LONG).show();
+        }
+
+
     }
 
     @Override
@@ -49,6 +85,64 @@ public class DataCauHoi extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(value);
         onCreate(sqLiteDatabase);
     }
+
+    public void AddQuestion()
+    {
+        try {
+            String[] Nd = new String[90];
+            String[] d1 = new String[90];
+            String[] d2 = new String[90];
+            String[] d3 = new String[90];
+            String[] d4 = new String[90];
+
+            for (int i = 0; i < 40; i++) {
+                Nd[i] = " Cau Hoi " +i +"?";
+                d1[i] = " Answer 1";
+                d2[i] = " Answer 2";
+                d3[i] = " Answer 3";
+                d4[i] = " Answer 4";
+            }
+
+            SQLiteDatabase mSqLiteDatabase = this.getWritableDatabase();
+            //ContentValues mValues = new ContentValues();
+        /*    for (int i = 0; i < 40; i++) {
+                ContentValues mValues = new ContentValues();
+                mValues.put("noidung", Nd[i]);
+                mValues.put("dapan1", d1[i]);
+                mValues.put("dapan2", d2[i]);
+                mValues.put("dapan3", d3[i]);
+                mValues.put("dapandung", d4[i]);
+                long rd = mSqLiteDatabase.insert(nameTable, null, mValues);
+            }
+*/
+
+
+            ContentValues mValues = new ContentValues();
+            mValues.put("noidung", "noidung");
+            mValues.put("dapan1", "noidung");
+            mValues.put("dapan2", "noidung");
+            mValues.put("dapan3", "noidung");
+            mValues.put("dapandung", "noidung");
+            long rd = mSqLiteDatabase.insert(nameTable, null, mValues);
+
+
+
+
+
+
+            mSqLiteDatabase.close();
+            Toast.makeText(mContext, "Thêm thành công In Add New Quest", Toast.LENGTH_LONG).show();
+        }
+        catch(Exception ex)
+            {
+                Toast.makeText(mContext, "Thêm That Bai Hoan Toan in New ADD quesstion" + ex.toString(), Toast.LENGTH_LONG).show();
+
+            }
+
+    }
+
+
+
     public long them (String Nd,String d1,String d2,String d3,String d4)
     {
         try

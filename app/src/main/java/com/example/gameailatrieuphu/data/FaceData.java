@@ -46,6 +46,7 @@ public class FaceData {
 
         } while (mListDapAnSai.size()!=3);
         mCauHoi.setmDapAnS(mListDapAnSai);*/
+
         return mCauHoi;
     }
     catch (Exception ex)

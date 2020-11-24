@@ -61,7 +61,7 @@ public class MainActivity2 extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout2);
         txtCauHoiHT=findViewById(R.id.cauHoiHT);
-        //Toast.makeText(this, "Chay Create", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Chay Create", Toast.LENGTH_SHORT).show();
         khoiTao();
         mListViewtt.setAdapter(mAdapter);
         setCauHoi();
@@ -210,7 +210,8 @@ public class MainActivity2 extends AppCompatActivity  {
         setButtonClickableTrue();
         txtCauHoiHT.setText("   Câu số "+vtCauHoi);
         mCauHoi=faceData.taoCauHoi(vtCauHoi,this);
-        List<String> mCauTraLoi=new ArrayList<>(mCauHoi.getmDapAnS());
+        Toast.makeText(this, mCauHoi.getNoiDung(), Toast.LENGTH_LONG).show();
+        List<String> mCauTraLoi=new ArrayList<String>(mCauHoi.getmDapAnS());
         mCauTraLoi.add(mCauHoi.getDapAnD());
         txtCauHoi.setText(mCauHoi.getNoiDung()+" ");
         Random mRandom=new Random();
@@ -222,10 +223,13 @@ public class MainActivity2 extends AppCompatActivity  {
             mCauTraLoi.set(v1,mCauTraLoi.get(v2));
             mCauTraLoi.set(v2,temp);
         }
+
+
        /* btnCauTraLoi1.setText(mCauTraLoi.get(0));
         btnCauTraLoi2.setText(mCauTraLoi.get(1));
         btnCauTraLoi3.setText(mCauTraLoi.get(2));
         btnCauTraLoi4.setText(mCauTraLoi.get(3));*/
+
        for(int i=0;i<ListbtnCauTraLoi.size();++i)
        {
            ListbtnCauTraLoi.get(i).setOnClickListener(listener);
@@ -236,6 +240,7 @@ public class MainActivity2 extends AppCompatActivity  {
        mAdapter.viTriCauHoi(vtCauHoi);
     }
 
+    //CAC TRO GIUP
     boolean troGiup5050=true;
     public void troGiup5050(View view) {
         if(troGiup5050==false)
@@ -293,8 +298,9 @@ public class MainActivity2 extends AppCompatActivity  {
 
         doiCauHoi=false;
     }
+   //Het Cac Tro Giup
 
-    /*@Override
+   /* @Override
     public void onClick(View view) {
         switch (view.getId())
         {
