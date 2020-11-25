@@ -2,6 +2,7 @@ package com.example.gameailatrieuphu;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -19,6 +20,7 @@ import com.example.gameailatrieuphu.adapter.TienThuongAdapter;
 import com.example.gameailatrieuphu.data.CauHoi;
 import com.example.gameailatrieuphu.data.DataCauHoi;
 import com.example.gameailatrieuphu.data.FaceData;
+import com.example.gameailatrieuphu.data.HighScoreData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +40,7 @@ public class MainActivity2 extends AppCompatActivity  {
     String cauTraLoi;
     FaceData faceData;
     View.OnClickListener listener;
+    Context m_context;
     private String [] ss={
             "200",
             "300",
@@ -60,6 +63,7 @@ public class MainActivity2 extends AppCompatActivity  {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout2);
+        m_context = this;
         txtCauHoiHT=findViewById(R.id.cauHoiHT);
         Toast.makeText(this, "Chay Create", Toast.LENGTH_SHORT).show();
         khoiTao();
@@ -178,6 +182,8 @@ public class MainActivity2 extends AppCompatActivity  {
                             }
                             else
                             {
+                                HighScoreData m_data = new HighScoreData(m_context);
+                                m_data.UpdateHighScore(Integer.toString(vtCauHoi));
                                 txtThuaGame.setText("Bạn ra về với số tiền thưởng là "+ss[vtCauHoi-2]+"$");
                             }
 

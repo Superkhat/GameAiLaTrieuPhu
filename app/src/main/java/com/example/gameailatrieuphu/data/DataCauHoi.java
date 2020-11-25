@@ -178,6 +178,7 @@ public class DataCauHoi extends SQLiteOpenHelper {
             while (!mCursor.isAfterLast())
             {
                 CauHoi mCauHoi=new CauHoi();
+
                 mCauHoi.setNoiDung(mCursor.getString(mCursor.getColumnIndex(nd)));
                 mCauHoi.setDapAnD(mCursor.getString(mCursor.getColumnIndex(da4)));
                 List<String> danS=new ArrayList<>();

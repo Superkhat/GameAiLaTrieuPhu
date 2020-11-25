@@ -8,12 +8,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HighScoreData extends SQLiteOpenHelper {
     Context m_context;
     static String TableHighS = "HighScore";
     public HighScoreData(@Nullable Context context) {
         super(context, TableHighS, null, 1);
-
+        m_context = context;
 
     }
 
@@ -47,11 +50,14 @@ public class HighScoreData extends SQLiteOpenHelper {
     public String GetHighScore()
     {
         SQLiteDatabase m_SQLite = this.getWritableDatabase();
-        String sql = "Select HighSore From" + TableHighS+ " where id='1' ";
-        Cursor m_cursor = m_SQLite.rawQuery(sql,null);
-        m_cursor.moveToFirst();
-        return Integer.toString( m_cursor.getColumnIndex("HighScore"));
 
+        String sql = "Select * From " + TableHighS;
+
+        Cursor m_cursor = m_SQLite.rawQuery(sql,null);
+
+        m_cursor.moveToFirst();
+        return m_cursor.getString( m_cursor.getColumnIndex("HighScore"));
+        //return "FUCK";
     }
 
 
