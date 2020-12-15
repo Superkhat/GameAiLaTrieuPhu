@@ -20,11 +20,12 @@ import java.util.List;
 
 public class TienThuongAdapter extends ArrayAdapter<String> {
    // int a=15;
-     int vtCauHoi;
+    int vtCauHoi;
     private Context mContext;
     private List<String> mStringArrayList;
-    public TienThuongAdapter(@NonNull Context context, int resource, @NonNull List<String> objects) {
-        super(context, resource, objects);
+    public TienThuongAdapter(@NonNull Context context, int resource, @NonNull List<String> objects)
+    {
+        super(context, resource, objects);// resource = id cua xml
         this.mContext=context;
         this.mStringArrayList=objects;
     }
@@ -40,7 +41,7 @@ public class TienThuongAdapter extends ArrayAdapter<String> {
         convertView=mLayoutInflater.inflate(R.layout.tienthuong,null);
        TextView txtTienTHuong =convertView.findViewById(R.id.txtTienThuong);
         if((position+1)%5==0)
-        {
+        {// hien mau o cac moc tien thuong
             txtTienTHuong.setTextColor(Color.parseColor("#FFFFFFFF"));
         }
         else
@@ -48,7 +49,7 @@ public class TienThuongAdapter extends ArrayAdapter<String> {
         int vt=15-position;
         String HienThi= vt+"    "+"$"+mStringArrayList.get(position);
         txtTienTHuong.setText(HienThi);
-        if(vt==vtCauHoi)
+        if(vt==vtCauHoi)// vi tri cau hoi hine tai
             txtTienTHuong.setBackgroundColor(Color.parseColor("#FF2196F3"));
         return convertView;
     }

@@ -2,11 +2,13 @@ package com.example.gameailatrieuphu;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,16 +20,18 @@ import com.example.gameailatrieuphu.adapter.TienThuongAdapter;
 import com.example.gameailatrieuphu.data.CauHoi;
 import com.example.gameailatrieuphu.data.DataCauHoi;
 import com.example.gameailatrieuphu.data.FaceData;
+import com.example.gameailatrieuphu.data.HighScoreData;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class MainActivity2 extends AppCompatActivity  {
+    private ImageView btnTro5050,btnTroKhanGia,btnDoiCauHoi;
     private ListView mListViewtt;
     private TextView txtCauHoiHT;
     private  TienThuongAdapter mAdapter;
-    private List<String> mStringList;
+    private List<String> mStringList;// danh sach tien thuong
     private TextView txtCauHoi,txtThuaGame;
     private Button btnCauTraLoi1,btnCauTraLoi2,btnCauTraLoi3,btnCauTraLoi4;
     private CauHoi mCauHoi;
@@ -36,6 +40,7 @@ public class MainActivity2 extends AppCompatActivity  {
     String cauTraLoi;
     FaceData faceData;
     View.OnClickListener listener;
+    Context m_context;
     private String [] ss={
             "200",
             "300",
@@ -55,57 +60,84 @@ public class MainActivity2 extends AppCompatActivity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout2);
+        m_context = this;
         txtCauHoiHT=findViewById(R.id.cauHoiHT);
+        Toast.makeText(this, "Chay Create", Toast.LENGTH_SHORT).show();
         khoiTao();
         mListViewtt.setAdapter(mAdapter);
-       setCauHoi();
+        setCauHoi();
         OnClick();
+
     }
     public void khoiTao()
     {
-        mCauHoi=new CauHoi();
-        ListbtnCauTraLoi=new ArrayList<>();
-        mStringList=new ArrayList<>();
-        mListViewtt=findViewById(R.id.lsvTienThuong);
+        try
+        {
+            btnTro5050=findViewById(R.id.btnTro5050);
+            btnDoiCauHoi=findViewById(R.id.btnDoiCauHoi);
+            btnTroKhanGia=findViewById(R.id.btnTroKhanGia);
+            mCauHoi=new CauHoi();
+            ListbtnCauTraLoi=new ArrayList<>();
+            mStringList=new ArrayList<>();// danh sach tien thuong
+            mListViewtt=findViewById(R.id.lsvTienThuong);
 
-        themDataLsv();
-        mAdapter=new TienThuongAdapter (this,R.layout.layout2,mStringList);
-       txtCauHoi=findViewById(R.id.txtCauHoi);
-       btnCauTraLoi1=findViewById(R.id.btnCauTraLoi1);
-       btnCauTraLoi2=findViewById(R.id.btnCauTraLoi2);
-       btnCauTraLoi3=findViewById(R.id.btnCauTraLoi3);
-       btnCauTraLoi4=findViewById(R.id.btnCauTraLoi4);
-       ListbtnCauTraLoi.add(btnCauTraLoi1);
-        ListbtnCauTraLoi.add(btnCauTraLoi2);
-        ListbtnCauTraLoi.add(btnCauTraLoi3);
-        ListbtnCauTraLoi.add(btnCauTraLoi4);
-        txtThuaGame=findViewById(R.id.txtThuaGame);
-        txtThuaGame.setVisibility(View.GONE);
-        faceData=new FaceData();
+            themDataLsv();//Them du lieu ss vao list String
+            mAdapter=new TienThuongAdapter (this,R.layout.layout2,mStringList);
+            txtCauHoi=findViewById(R.id.txtCauHoi);
+            btnCauTraLoi1=findViewById(R.id.btnCauTraLoi1);
+            btnCauTraLoi2=findViewById(R.id.btnCauTraLoi2);
+            btnCauTraLoi3=findViewById(R.id.btnCauTraLoi3);
+            btnCauTraLoi4=findViewById(R.id.btnCauTraLoi4);
+            ListbtnCauTraLoi.add(btnCauTraLoi1);
+            ListbtnCauTraLoi.add(btnCauTraLoi2);
+            ListbtnCauTraLoi.add(btnCauTraLoi3);
+            ListbtnCauTraLoi.add(btnCauTraLoi4);
+            txtThuaGame=findViewById(R.id.txtThuaGame);
+            txtThuaGame.setVisibility(View.GONE);
+            faceData=new FaceData();
+        }
+        catch (Exception ex)
+        {
+            Toast.makeText(this, "Loi"+ex.toString(),Toast.LENGTH_SHORT).show();
+        }
+
 
     }
 
     public void OnClick() {
-     listener=new View.OnClickListener() {
+        listener=new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-          kiemTraCauTraLoi((Button)view);
+                kiemTraCauTraLoi((Button)view);
             }
         };
-       /* btnCauTraLoi1.setOnClickListener(listener);
+        btnCauTraLoi1.setOnClickListener(listener);
         btnCauTraLoi2.setOnClickListener(listener);
         btnCauTraLoi3.setOnClickListener(listener);
-        btnCauTraLoi4.setOnClickListener(listener);*/
+        btnCauTraLoi4.setOnClickListener(listener);
         for(Button i:ListbtnCauTraLoi)
         {
-           i.setOnClickListener(listener);
+
+                i.setOnClickListener(listener);
+                //kiemTraCauTraLoi(listener);
+
         }
 
     }
+
+    /*public void OnClick() {
+        btnCauTraLoi1.setOnClickListener(this);
+        btnCauTraLoi2.setOnClickListener(this);
+        btnCauTraLoi3.setOnClickListener(this);
+        btnCauTraLoi4.setOnClickListener(this);
+    }*/
+
     public  void  kiemTraCauTraLoi(Button btncauTraLoi)
     {
+        setButtonClickableFalse();
         cauTraLoi= (String) btncauTraLoi.getText();
         btncauTraLoi.setBackgroundResource(R.drawable.mauchonbutton);
         new CountDownTimer(2000,100)
@@ -144,7 +176,18 @@ public class MainActivity2 extends AppCompatActivity  {
                         else
                         {
                             txtThuaGame.setVisibility(View.VISIBLE);
-                            txtThuaGame.setText("Bạn ra về với số tiền thưởng là "+ss[vtCauHoi-1]+"$");
+                            if(vtCauHoi == 1)
+                            {
+                                txtThuaGame.setText("Bạn ra về với số tiền thưởng là 0$");
+                            }
+                            else
+                            {
+                                HighScoreData m_data = new HighScoreData(m_context);
+                                m_data.UpdateHighScore(Integer.toString(vtCauHoi));
+                                txtThuaGame.setText("Bạn ra về với số tiền thưởng là "+ss[vtCauHoi-2]+"$");
+                            }
+
+
 
                         }
 
@@ -157,15 +200,24 @@ public class MainActivity2 extends AppCompatActivity  {
 
     public void themDataLsv()
     {
-        for(int i=ss.length-1;i>=0;--i)
-        mStringList.add(ss[i]);
+        try {
+            for(int i=ss.length-1;i>=0;--i)
+                mStringList.add(ss[i]);
+        }
+        catch(Exception ex)
+        {
+            Toast.makeText(this, "Loi"+ex.toString(), Toast.LENGTH_SHORT).toString();
+        }
+
     }
 
     public void setCauHoi()
     {
-        txtCauHoiHT.setText("Bạn đang ở câu số "+vtCauHoi);
+        setButtonClickableTrue();
+        txtCauHoiHT.setText("   Câu số "+vtCauHoi);
         mCauHoi=faceData.taoCauHoi(vtCauHoi,this);
-        List<String> mCauTraLoi=new ArrayList<>(mCauHoi.getmDapAnS());
+        Toast.makeText(this, mCauHoi.getNoiDung(), Toast.LENGTH_LONG).show();
+        List<String> mCauTraLoi=new ArrayList<String>(mCauHoi.getmDapAnS());
         mCauTraLoi.add(mCauHoi.getDapAnD());
         txtCauHoi.setText(mCauHoi.getNoiDung()+" ");
         Random mRandom=new Random();
@@ -177,10 +229,13 @@ public class MainActivity2 extends AppCompatActivity  {
             mCauTraLoi.set(v1,mCauTraLoi.get(v2));
             mCauTraLoi.set(v2,temp);
         }
+
+
        /* btnCauTraLoi1.setText(mCauTraLoi.get(0));
         btnCauTraLoi2.setText(mCauTraLoi.get(1));
         btnCauTraLoi3.setText(mCauTraLoi.get(2));
         btnCauTraLoi4.setText(mCauTraLoi.get(3));*/
+
        for(int i=0;i<ListbtnCauTraLoi.size();++i)
        {
            ListbtnCauTraLoi.get(i).setOnClickListener(listener);
@@ -191,6 +246,7 @@ public class MainActivity2 extends AppCompatActivity  {
        mAdapter.viTriCauHoi(vtCauHoi);
     }
 
+    //CAC TRO GIUP
     boolean troGiup5050=true;
     public void troGiup5050(View view) {
         if(troGiup5050==false)
@@ -199,6 +255,7 @@ public class MainActivity2 extends AppCompatActivity  {
         }
         else
         {
+            btnTro5050.setAlpha(0.5f);
             Random r=new Random();
             int sdaa=2;
             while(sdaa>0){
@@ -221,6 +278,7 @@ public class MainActivity2 extends AppCompatActivity  {
     {
         if(troGiupKhanGia==false)
             return;
+        btnTroKhanGia.setAlpha(0.5f);
        for(int i=0;i<ListbtnCauTraLoi.size();++i)
        {
            TextView txt=ListbtnCauTraLoi.get(i);
@@ -237,9 +295,54 @@ public class MainActivity2 extends AppCompatActivity  {
     boolean doiCauHoi=true;
     public void DoiCauHoi(View view)
     {
+        btnDoiCauHoi.setAlpha(0.5f);
         if(doiCauHoi==false)
+        {
             return;
+        }
         setCauHoi();
+
         doiCauHoi=false;
+    }
+   //Het Cac Tro Giup
+
+   /* @Override
+    public void onClick(View view) {
+        switch (view.getId())
+        {
+            case R.id.btnCauTraLoi1:
+                kiemTraCauTraLoi(btnCauTraLoi1);
+                setButtonClickableFalse();
+                break;
+            case R.id.btnCauTraLoi2:
+                kiemTraCauTraLoi(btnCauTraLoi1);
+                setButtonClickableFalse();
+                break;
+            case R.id.btnCauTraLoi3:
+                kiemTraCauTraLoi(btnCauTraLoi1);
+                setButtonClickableFalse();
+                break;
+            case R.id.btnCauTraLoi4:
+                kiemTraCauTraLoi(btnCauTraLoi1);
+                setButtonClickableFalse();
+                break;
+        }
+    }*/
+    public void setButtonClickableTrue( ) {
+
+                btnCauTraLoi1.setClickable(true);
+                btnCauTraLoi2.setClickable(true);
+                btnCauTraLoi3.setClickable(true);
+                btnCauTraLoi4.setClickable(true);
+
+    }
+
+    public void setButtonClickableFalse()
+    {
+                btnCauTraLoi1.setClickable(false);
+                btnCauTraLoi2.setClickable(false);
+                btnCauTraLoi3.setClickable(false);
+                btnCauTraLoi4.setClickable(false);
+
     }
 }
