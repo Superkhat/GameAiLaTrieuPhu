@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/custorm_anh"
+
+
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+    <LinearLayout
+        android:padding="7dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/btnTro5050"
+            android:onClick="troGiup5050"
+            android:layout_marginLeft="5dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/trogiupmotnua"></ImageView>
+
+        <ImageView
+            android:id="@+id/btnTroKhanGia"
+            android:onClick="troGiupKhanGia"
+            android:layout_marginLeft="6dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/trogiupkgia"
+            ></ImageView>
+        <ImageView
+
+            android:layout_marginLeft="6dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/backgrond"
+            ></ImageView>
+        <ImageView
+            android:id="@+id/btnDoiCauHoi"
+            android:onClick="DoiCauHoi"
+            android:layout_marginLeft="6dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/replacement"
+            ></ImageView>
+        <TextView
+            android:id="@+id/cauHoiHT"
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="                  0"
+            android:textColor="#ff0"
+            ></TextView>
+        <!--<ImageView
+            android:layout_marginLeft="2dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/money"
+            ></ImageView>-->
+    </LinearLayout>
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/txtCauHoi"
+        android:layout_marginTop="10dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:background="@drawable/custormbutton"
+        android:gravity="center"
+        android:text="Tòa nhà cao nhất Việt Nam là tòa nào trong các tòa dưới đây?"
+        android:textColor="#E9E6EF"
+        android:textSize="30dp"
+        ></TextView>
+    </LinearLayout>
+
+<LinearLayout
+    android:layout_marginTop="20dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    >
+    <RelativeLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+       <View
+           android:layout_centerInParent="true"
+           android:layout_width="match_parent"
+           android:layout_height="3dp"
+           android:background="@color/colorPrimary"
+           ></View>
+        <Button
+            android:textColor="#F8F7FA"
+            android:id="@+id/btnCauTraLoi1"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="58dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custormbutton">
+        </Button>
+
+    </RelativeLayout
+        >
+    <RelativeLayout
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/colorPrimary"
+            ></View>
+        <Button
+            android:textColor="#F8F7FA"
+            android:id="@+id/btnCauTraLoi2"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="58dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custormbutton">
+        </Button>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/colorPrimary"
+            ></View>
+        <Button
+            android:textColor="#F8F7FA"
+            android:id="@+id/btnCauTraLoi3"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="58dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custormbutton">
+        </Button>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/colorPrimary"
+            ></View>
+        <Button
+            android:textColor="#F8F7FA"
+            android:id="@+id/btnCauTraLoi4"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="58dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custormbutton">
+        </Button>
+
+    </RelativeLayout>
+
+
+</LinearLayout>
+
+    </LinearLayout>
+        <TextView
+            android:id="@+id/txtThuaGame"
+            android:background="#9C27B0"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="30dp"
+            android:text="Bạn ra về với 0 đồng"
+            android:gravity="center"
+            android:textColor="#FCFCFD"
+            ></TextView>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        >
+
+        <ListView
+            android:id="@+id/lsvTienThuong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </ListView>
+    </RelativeLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
